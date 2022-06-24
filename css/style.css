@@ -1,0 +1,16 @@
+body{
+    background-color: brown;
+    
+}
+.titulo{
+    color: white;
+    display: block;
+    align-items: center;
+}
+.menu{
+   
+    display: block;
+}
+h3{
+    color: white;
+}
