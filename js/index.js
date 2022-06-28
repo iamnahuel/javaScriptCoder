@@ -7,6 +7,7 @@ let cantNotasMatematica = 0;
 let cantNotasGeografica = 0;
 let cantNotasLiteratura = 0;
 let opcion = 0;
+numero.toFixed(2) = 0;
 
 function ingresarAlumno() {
     nombreAlumno = prompt("Nombre del Alumno: ");
@@ -49,27 +50,27 @@ function ingresarAlumno() {
 
 }
 
-function promedioMatematica() {
-    if (cantNotasMatematica == 0) {
+function calcularPromedio(sumaNotas, cantidadNotas){
+    if (cantidadNotas == 0) {
         alert("No hay notas de Matematica cargadas");
     } else {
-        let promedio = notaMatematica / cantNotasMatematica;
-        alert(nombreAlumno + " tiene un promedio en Matematicas de: " + promedio);
+        let promedio = sumaNotas / cantidadNotas;
+        alert(nombreAlumno + " tiene un promedio en Matematicas de: " + promedio.toFixed(2));
     }
 }
+function matepromedioMatica (){
+    sumaNotas = notaMatematica;
+    cantidadNotas = cantNotasMatematica;
+    calcularPromedio(sumaNotas, cantidadNotas);
+}
+
 function promedioGeografia() {
-    if (cantNotasGeografica == 0) {
-        alert("No hay notas de Geografia cargadas");
-    } else {
-        let promedio = notaGeografia / cantNotasGeografica;
-        alert(nombreAlumno + " tiene un promedio en Geografia de: " + promedio);
-    }
+    sumaNotas = notaGeografia;
+    cantidadNotas = cantNotasGeografica;
+    calcularPromedio(sumaNotas, cantidadNotas);
 }
 function promedioLiteratura() {
-    if (cantNotasLiteratura == 0) {
-        alert("No hay notas de Literatura cargadas");
-    } else {
-        let promedio = notaLiteratura / cantNotasLiteratura;
-        alert(nombreAlumno + " tiene un promedio en Literatura de: " + promedio);
-    }
+    sumaNotas = notaLiteratura;
+    cantidadNotas = cantNotasLiteratura;
+    calcularPromedio(sumaNotas, cantidadNotas);
 }
