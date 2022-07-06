@@ -1,0 +1,78 @@
+@import '../base/variables';
+
+.footerEsponsor {
+    background: #0B3073;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .iconosEsponsor {
+        justify-content: center;
+
+        .adidas {
+            width: 90px;
+            margin-right: 50px;
+        }
+
+        .quilmes {
+            width: 120px;
+            margin-right: 50px;
+        }
+
+        .bancoPampa {
+            width: 150px;
+            margin-right: 50px;
+        }
+        .cooprol{
+            width: 90px;
+            margin-right: 50px;
+        }
+    }
+}
+
+.footer {
+    background: #003290;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    /*alineamos los elementos de forma horizontal*/
+    justify-content: space-around;
+    /*alineamos los elemnetos de forma vertival*/
+    align-items: center;
+
+
+    .logoFooter {
+        margin-left: 30px;
+        font-family: tahoma;
+        font-size: 15px;
+        color: white;
+        display: flex;
+        align-items: center;
+
+        .imagenFooter {
+            width: 60px;
+            height: 69px;
+        }
+
+    }
+
+    .iconosRedes {
+        justify-content: center;
+
+        .iconosFooter {
+            margin-left: 10px;
+            margin-right: 0px;
+            width: 40px;
+
+            &:hover {
+                color: $bg-color-secuandario;
+                background-color: $bg-color-secuandario;
+                padding: 3px;
+                border-radius: 50%;
+
+            }
+        }
+    }
+}

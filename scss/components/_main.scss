@@ -1,0 +1,32 @@
+@import '../base/variables';
+@import '../base/mapas';
+@import '../base/extends';
+@import '../base/mixin';
+
+body {
+    @extend %flex;
+    background-color: $bg-color-main;
+
+    .tituloMain {
+        font-family: tahoma;
+        font-size: 20px;
+        color: $bg-color-general;
+        margin: 20px;
+    }
+    .menuOpciones{
+        margin: 10px;
+       
+    }
+    .seccionInformacioSocio {
+        .ulSocios {
+            padding: 30px;
+            .liSocios::before {
+                content: "♥";
+                color: #f39608;
+            }
+        }
+    }
+    
+
+
+}

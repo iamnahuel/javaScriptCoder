@@ -1,0 +1,32 @@
+@import '../base/variables';
+
+header {
+    background: $bg-color-general;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+ 
+   
+
+    div {
+        a {
+            img {
+                margin-left: 40px;
+                width: 60px;
+            }
+
+        }
+    }
+
+    .logoEncabezadoCompras {
+        width: 400px;
+    }
+
+    .textoEncabezado {
+        width: 300px;
+        margin-left: 15px;
+        
+    }
+}

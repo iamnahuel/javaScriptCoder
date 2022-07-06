@@ -1,0 +1,41 @@
+
+@import '../base/variables';
+
+.nav {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+
+    .navBarMenu {
+        width: 100%;
+        font-size: large;
+        display: flex;
+        align-items: flex-start;
+
+        .navMenu {
+            width: 100%;
+            height: 100%;
+            background: $bg-color-nav;
+            display: inline-flex;
+            font-weight: bold;
+
+
+            .collapse {
+                .navbar-nav {
+                    .nav-item {
+                        .nav-link{
+                            font-style: $bg-color-nav;
+                            &:hover{
+                                background-color: $bg-color-secuandario;
+                            }
+                        }
+                    }
+
+                    .actual {
+                        background-color: $bg-color-secuandario;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+@mixin titulo ($fontFamily, $fontSize, $colorFont, $marginFont) {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $colorFont;
+    margin: $marginFont;
+}

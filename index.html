@@ -2,25 +2,90 @@
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desfio Entregable 1</title>
+    <title>Centro Social y Deportivo Rolón - CSyDR</title>
+    <link rel="shortcut icon" href="imagenes/escudo.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <section class="titulo">
-        <h1>Ciclos | Desafio N° 1</h1>
+    <header class="header">
+        <div>
+            <a href="index.html"> <img class="logoEncabezado" src="imagenes/logo-1.jpg" alt=""></a>
+        </div>
+        <div class="divTextoLogo">
+            <a href="index.html"> <img class="textoEncabezado" src="imagenes/textoEncabezado.png" alt=""></a>
+        </div>
+    </header>
+
+
+    <section class="tituloMain">
+        <h1>Gestion de Socios</h1>
     </section>
-    <section class="menu">
-        <button onclick="ingresarAlumno()">Ingresar Alumno</button>
-        <br>
-        <h3>Calculo de promedios</h3>
-        <button onclick="matepromedioMatica()">Matematica</button>
-        <button onclick="promedioLiteratura()">Literatura</button>
-        <button onclick="promedioGeografia()">Geografia</button>
+    
+    <section class="menuOpciones">
+        <button class="btn btn-primary" type="submit" onclick="agregarSocio()">Agregar Socio</button>
+        <button class="btn btn-primary" type="submit" onclick="listarSocios ()">Mostrar Socios</button>
+        <!-- <button class="btn btn-primary" type="submit">Eliminar Socio</button>
+        <button class="btn btn-primary" type="submit">Listar Socios</button>
+        <button class="btn btn-primary" type="submit">Cobrar Cuota</button>-->
     </section>
+
+    <section class="seccionInformacioSocio">
+        <div class="tituloMain">
+            <h1 class="tituloSocio">Informacion pagos</h1>
+        </div>
+        <ul class="ulSocios" style="text-align: left;">
+            <li class="liSocios" style="list-style-type:none;">
+                Lo socios que abonen su cuota del 1 al 5 de cada mes, tendran un descuento del %5
+            </li>
+            <br>
+            <li class="liSocios" style="list-style-type:none;">
+                Lo socios que abonen su cuota del 6 al 10 de cada mes, tendran un descuento del %3
+            </li>
+            <br>
+            <li class="liSocios" style="list-style-type:none;">
+                Lo socios que no abonen su cuota del 1 al 10 de cada mes, tendran un recargo del %10
+            </li>
+        </ul>
+    </section>
+
+
+    <footer class="footerEsponsor">
+        <div class="iconosEsponsor">
+            <a href="https://www.adidas.com.ar/" target="_blank"><img class="esponsor adidas" src="imagenes/adidas.png"
+                    alt="esponsor adidas" title="esponsor"></a>
+            <a href="https://www.quilmes.com.ar/agegate/" target="_blank"><img class="esponsor quilmes"
+                    src="imagenes/quilmes.png" alt="esponsor quilmes" title="esponsor"></a>
+            <a href="https://www.bancodelapampa.com.ar/" target="_blank"><img class="esponsor cooprol"
+                    src="imagenes/cooprol.png" alt="esponsor cooperativa rolon" title="esponsor"></a>
+            <a href="https://www.bancodelapampa.com.ar/" target="_blank"><img class="esponsor bancoPampa"
+                    src="imagenes/bancoPampa.png" alt="esponsor banco pampa" title="esponsor"></a>
+        </div>
+    </footer>
+    <footer class="footer">
+        <div class="logoFooter">
+            <img class="imagenFooter" src="imagenes/logoFooter.png" alt="icono footer" title="icono footer">
+        </div>
+        <div class="iconosRedes">
+            <a href="https://www.facebook.com/" target="_blank"><img class="iconosFooter"
+                    src="imagenes/icono-facebook.jpg" alt="red social facebook" title="redes sociales"></a>
+            <a href="https://www.instagram.com/" target="_blank"><img class="iconosFooter"
+                    src="imagenes/icono-instagram.jpg" alt="red social intagram" title="redes sociales"></a>
+            <a href="pages/contacto.html" target="_blank"><img class="iconosFooter" src="imagenes/icono-ubicacion.jpg"
+                    alt="Ubicacion del Club" title="ubicacion"></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
 </body>
 
