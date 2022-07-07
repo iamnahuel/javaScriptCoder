@@ -26,14 +26,99 @@
     <section class="tituloMain">
         <h1>Gestion de Socios</h1>
     </section>
-    
+
     <section class="menuOpciones">
-        <button class="btn btn-primary" type="submit" onclick="agregarSocio()">Agregar Socio</button>
-        <button class="btn btn-primary" type="submit" onclick="listarSocios ()">Mostrar Socios</button>
+        <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalAgregarSocio">Agregar
+            Socio</button>
+        <button class="btn btn-primary" type="submit" onclick="listarSocios ()">Mostrar Socios por consola</button>
+        <button class="btn btn-primary" type="submit" onclick="agregarElementos()">Mostrar socios por HTML</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Buscar Socio
+        </button>
         <!-- <button class="btn btn-primary" type="submit">Eliminar Socio</button>
-        <button class="btn btn-primary" type="submit">Listar Socios</button>
         <button class="btn btn-primary" type="submit">Cobrar Cuota</button>-->
     </section>
+    <section class="listadoSocios">
+        <div id="ulListado"></div>
+    </section>
+    <section class="modalBuscarSocio">
+        <!-- Button trigger modal -->
+        <!-- Modal agregar socio-->
+        <div class="modal fade" id="modalAgregarSocio" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Socio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form>
+
+
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Nombre</label>
+                            <input type="text" id="nombreSocioAgregar" class="form-control" placeholder="Nombre">
+                            <label for="disabledTextInput" class="form-label">DNI</label>
+                            <input type="number" id="dniSocioAgregar" class="form-control" placeholder="DNI">
+                            <label for="disabledTextInput" class="form-label">Localidad</label>
+                            <input type="text" id="localidadSocioAgregar" class="form-control"
+                                placeholder="Localidad">
+                            <label for="disabledTextInput" class="form-label">Edad</label>
+                            <input type="number" id="edadSocioAgregar" class="form-control"
+                                placeholder="Edad">
+                        </div>
+
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerar</button>
+                        <button type="button" class="btn btn-success" onclick=" agregarSocio()">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal buscador socio -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Buscador Socios</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Ingrese el dni del socio
+                    </div>
+                    <input class="form-control" type="text" placeholder="DNI del Socio" id="documento">
+                    <br>
+
+                    <!--  <input class="form-control" type="text" placeholder="Por nombre" id="nombre">
+                    <br>
+                    <input class="form-control" type="text" placeholder="Por localidad" id="localidad">
+                    -->
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary" onclick="buscarSocio()">Buscar</button>
+                    </div>
+                    <input type="text" disabled value="" placeholder="Nombre" id="nombreSocio" />
+                    <br>
+                    <input type="text" disabled value="" placeholder="Localidad" id="localidadSocio" />
+                    <br>
+                    <input type="text" disabled value="" placeholder="Edad" id="edadSocio" />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            onclick="limpiarFormulario()">Cerar</button>
+                        <button type="button" class="btn btn-success">Modificar</button>
+                        <button type="button" class="btn btn-danger" onclick="eliminarSocio()">Eliminar Socio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
 
     <section class="seccionInformacioSocio">
         <div class="tituloMain">
@@ -87,6 +172,7 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 
 </html>
