@@ -143,6 +143,24 @@ body .seccionInformacioSocio .ulSocios .liSocios::before {
   content: "♥";
   color: #f39608;
 }
+body .listadoSocios {
+  justify-content: center;
+  display: flex;
+}
+body .listadoSocios .listaSocios {
+  color: white;
+  border-radius: 10px;
+  width: 60%;
+  background-color: #003290;
+}
+body .modalSocios .modal-content {
+  padding: 5px;
+  background-color: #f39608;
+  color: white;
+}
+body .modalSocios .modal-content .form-control {
+  background-color: white;
+}
 
 * {
   margin: 0;

@@ -30,8 +30,7 @@
     <section class="menuOpciones">
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalAgregarSocio">Agregar
             Socio</button>
-        <button class="btn btn-primary" type="submit" onclick="listarSocios ()">Mostrar Socios por consola</button>
-        <button class="btn btn-primary" type="submit" onclick="agregarElementos()">Mostrar socios por HTML</button>
+        <button class="btn btn-primary" type="submit" onclick="agregarElementos()">Listado Socios</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Buscar Socio
         </button>
@@ -39,9 +38,9 @@
         <button class="btn btn-primary" type="submit">Cobrar Cuota</button>-->
     </section>
     <section class="listadoSocios">
-        <div id="ulListado"></div>
+        <div id="ulListado" class="listaSocios"></div>
     </section>
-    <section class="modalBuscarSocio">
+    <section class="modalSocios">
         <!-- Button trigger modal -->
         <!-- Modal agregar socio-->
         <div class="modal fade" id="modalAgregarSocio" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -61,11 +60,15 @@
                             <label for="disabledTextInput" class="form-label">DNI</label>
                             <input type="number" id="dniSocioAgregar" class="form-control" placeholder="DNI">
                             <label for="disabledTextInput" class="form-label">Localidad</label>
-                            <input type="text" id="localidadSocioAgregar" class="form-control"
-                                placeholder="Localidad">
+                            <input type="text" id="localidadSocioAgregar" class="form-control" placeholder="Localidad">
                             <label for="disabledTextInput" class="form-label">Edad</label>
-                            <input type="number" id="edadSocioAgregar" class="form-control"
-                                placeholder="Edad">
+                            <input type="number" id="edadSocioAgregar" class="form-control" placeholder="Edad">
+                            <label for="disabledTextInput" class="form-label">Tipo Socio</label>
+                            <select class="form-control" id="tipoSocio">
+                                <option value="Pleno" selected="selected">Pleno</option>
+                                <option value="Simple">Simple</option>
+                            </select>
+
                         </div>
 
                     </form>

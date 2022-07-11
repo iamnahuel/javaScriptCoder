@@ -13,20 +13,43 @@ body {
         color: $bg-color-general;
         margin: 20px;
     }
-    .menuOpciones{
+
+    .menuOpciones {
         margin: 10px;
-       
+
     }
+
     .seccionInformacioSocio {
         .ulSocios {
             padding: 30px;
+
             .liSocios::before {
                 content: "♥";
                 color: #f39608;
             }
         }
     }
-    
+
+    .listadoSocios {
+        justify-content: center;
+        display: flex;
+        .listaSocios {
+            color: white;
+            border-radius: 10px;
+            width: 60%;
+            background-color: #003290;
+        }
+    }
+    .modalSocios{
+        .modal-content{
+            padding: 5px;
+            background-color:#f39608;
+            color: white;
+            .form-control{
+                background-color: white;
+            }
+        }
+    }
 
 
 }
