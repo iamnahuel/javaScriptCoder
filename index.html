@@ -28,9 +28,9 @@
     </section>
 
     <section class="menuOpciones">
-        <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalAgregarSocio">Agregar
+        <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#agregarS">Agregar
             Socio</button>
-        <button class="btn btn-primary" type="submit" onclick="agregarElementos()">Listado Socios</button>
+        <button class="btn btn-primary listarSocios" type="submit">Listado Socios</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Buscar Socio
         </button>
@@ -41,41 +41,33 @@
         <div id="ulListado" class="listaSocios"></div>
     </section>
     <section class="modalSocios">
-        <!-- Button trigger modal -->
-        <!-- Modal agregar socio-->
-        <div class="modal fade" id="modalAgregarSocio" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <!--Modal agregar socio-->
+        <div class="modal fade" id="agregarS" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Agregar Socio</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form id="formulario">
 
-
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Nombre</label>
-                            <input type="text" id="nombreSocioAgregar" class="form-control" placeholder="Nombre">
-                            <label for="disabledTextInput" class="form-label">DNI</label>
-                            <input type="number" id="dniSocioAgregar" class="form-control" placeholder="DNI">
-                            <label for="disabledTextInput" class="form-label">Localidad</label>
-                            <input type="text" id="localidadSocioAgregar" class="form-control" placeholder="Localidad">
-                            <label for="disabledTextInput" class="form-label">Edad</label>
-                            <input type="number" id="edadSocioAgregar" class="form-control" placeholder="Edad">
-                            <label for="disabledTextInput" class="form-label">Tipo Socio</label>
-                            <select class="form-control" id="tipoSocio">
-                                <option value="Pleno" selected="selected">Pleno</option>
-                                <option value="Simple">Simple</option>
-                            </select>
-
-                        </div>
-
+                        <label for="disabledTextInput" class="form-label">Nombre</label>
+                        <input type="text" id="nombreSocioAgregar" class="form-control" placeholder="Nombre">
+                        <label for="disabledTextInput" class="form-label">DNI</label>
+                        <input type="number" id="dniSocioAgregar" class="form-control" placeholder="DNI">
+                        <label for="disabledTextInput" class="form-label">Localidad</label>
+                        <input type="text" id="localidadSocioAgregar" class="form-control" placeholder="Localidad">
+                        <label for="disabledTextInput" class="form-label">Edad</label>
+                        <input type="number" id="edadSocioAgregar" class="form-control" placeholder="Edad">
+                        <label for="disabledTextInput" class="form-label">Tipo Socio</label>
+                        <select class="form-control" id="tipoSocio">
+                            <option value="Pleno" selected="selected">Pleno</option>
+                            <option value="Simple">Simple</option>
+                        </select>
+                        <br>
+                        <input type="submit" class="btn btn-success" value="Enviar">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerar</button>
-                        <button type="button" class="btn btn-success" onclick=" agregarSocio()">Agregar</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -93,14 +85,8 @@
                     </div>
                     <input class="form-control" type="text" placeholder="DNI del Socio" id="documento">
                     <br>
-
-                    <!--  <input class="form-control" type="text" placeholder="Por nombre" id="nombre">
-                    <br>
-                    <input class="form-control" type="text" placeholder="Por localidad" id="localidad">
-                    -->
                     <div class="modal-footer">
-
-                        <button type="button" class="btn btn-primary" onclick="buscarSocio()">Buscar</button>
+                        <button type="button" class="btn btn-primary btnBuscarSocio">Buscar</button>
                     </div>
                     <input type="text" disabled value="" placeholder="Nombre" id="nombreSocio" />
                     <br>
@@ -111,7 +97,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             onclick="limpiarFormulario()">Cerar</button>
                         <button type="button" class="btn btn-success">Modificar</button>
-                        <button type="button" class="btn btn-danger" onclick="eliminarSocio()">Eliminar Socio</button>
+                        <button type="button" class="btn btn-danger btnEliminarSocio">Eliminar Socio</button>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,18 @@
 
-//declaro dos objetos de socio
+//declaro cuatro objetos de socio
 let socio1 = { nombre: "Facundo Alvarez", edad: 25, localidad: "Rolon", dni: 34475458, tipoSocio: "Pleno" };
 let socio2 = { nombre: "Laura Perez", edad: 60, localidad: "Santa Rosa", dni: 14285470, tipoSocio: "Pleno" };
 let socio3 = { nombre: "Juan Garcia", edad: 50, localidad: "Rolon", dni: 14245470, tipoSocio: "Simple" };
+let socio4 = { nombre: "Martin Gonzalez", edad: 20, localidad: "Macachin", dni: 14145796, tipoSocio: "Simple" };
 //declaramos array de socios, con dos socios harcodeados para que no este vacio
-const socios = [socio1, socio2, socio3];
+const socios = [socio1, socio2, socio3, socio4];
+
+//creamos los botones para crear / listar / buscar y eliminar socios
+//btnCrearSocio = document.querySelector(".agregarSocio");
+btnListarSocios = document.querySelector(".listarSocios");
+btnBuscarSocio = document.querySelector(".btnBuscarSocio");
+btnEliminarSocio = document.querySelector(".btnEliminarSocio");
+
 
 //funcion constructora para crear el objeto socio
 function Socio(dni, nombre, edad, localidad, tipoSocio) {
@@ -16,22 +24,21 @@ function Socio(dni, nombre, edad, localidad, tipoSocio) {
 
 }
 
+//funcion agregar socio con evento EventListener y e.target
+const formSocio = document.querySelector("#formulario");
+formSocio.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let from = e.target;
+    let nombreSocio = from.children[1].value;
+    let dniSocio = from.children[3].value;
+    let edadSocio = from.children[5].value;
+    let localidadSocio = from.children[7].value;
 
-function agregarSocio() {
-    let dniSocio = parseInt(document.getElementById("dniSocioAgregar").value);
-    let nombreSocio = document.getElementById("nombreSocioAgregar").value;
-    let edadSocio = parseInt(document.getElementById("edadSocioAgregar").value);
-    let localidadSocio = document.getElementById("localidadSocioAgregar").value;
-   //
-    var e = document.getElementById("tipoSocio");
-    var tipoSocio = e.options[e.selectedIndex].value;
-   
     //declaramos un variable donde cargar el objeto socio creado arriba
     let socioTemporal = new Socio(dniSocio, nombreSocio, edadSocio, localidadSocio, tipoSocio);
 
     //verificar que el dni no este cargado en el array previamente
-
-    const resultado = socios.find((el) => el.dni === dniSocio);
+    const resultado = socios.find((el) => el.dni == dniSocio);
     if (resultado != null) {
         alert("Ya existe un socio con este numero de documento");
     } else {
@@ -43,13 +50,15 @@ function agregarSocio() {
             socios.push(socioTemporal);
             alert("Se agrego a " + nombreSocio + " exitosamente");
             limpiarFormulario();
+           
         }
     }
     return socios;
-}
+   
+})
 
-//mostrar array por LI
-function agregarElementos() {
+//evento listar socios asociados al btnListarSocios
+btnListarSocios.addEventListener("click", () => {
     var lista = document.getElementById("ulListado");
     socios.forEach(function (data, index) {
         var linew = document.createElement("li");
@@ -57,11 +66,10 @@ function agregarElementos() {
         linew.appendChild(contenido);
         lista.appendChild(linew);
     })
-}
+})
 
-
-//buscar socio por dni o nombre
-function buscarSocio() {
+//evento buscar socio asociados al btnBuscarSocio
+btnBuscarSocio.addEventListener("click", () => {
     let dni = parseInt(document.getElementById("documento").value);
     const resultado = socios.find((el) => el.dni === dni);
     if (resultado == null) {
@@ -72,9 +80,10 @@ function buscarSocio() {
         document.getElementById("edadSocio").value = resultado.edad;
     }
     return resultado;
-}
+})
 
-function eliminarSocio() {
+//evento eliminar socio asociado al btnEliminarSocio
+btnEliminarSocio.addEventListener("click", () => {
     let dni = parseInt(document.getElementById("documento").value);
     const resultado = socios.find((el) => el.dni === dni);
     let position = socios.indexOf(resultado);
@@ -88,7 +97,8 @@ function eliminarSocio() {
         limpiarFormulario();
     }
     return socios;
-}
+})
+
 //limpia el frmulario de busqueda de socios
 function limpiarFormulario() {
 
