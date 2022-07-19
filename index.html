@@ -22,7 +22,6 @@
         </div>
     </header>
 
-
     <section class="tituloMain">
         <h1>Gestion de Socios</h1>
     </section>
@@ -31,15 +30,37 @@
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#agregarS">Agregar
             Socio</button>
         <button class="btn btn-primary listarSocios" type="submit">Listado Socios</button>
+  
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Buscar Socio
         </button>
-        <!-- <button class="btn btn-primary" type="submit">Eliminar Socio</button>
-        <button class="btn btn-primary" type="submit">Cobrar Cuota</button>-->
     </section>
-    <section class="listadoSocios">
-        <div id="ulListado" class="listaSocios"></div>
+    <!--tabla socios-->
+    <section class="tabla" id="idTablaSocios">
+        <div class="tablaSocios" >
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Localidad</th>
+                        <th scope="col">Tipo Socio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="dniList"></td>
+                        <td id="nombreList"></td>
+                        <td id="edadList"></td>
+                        <td id="localidadList"></td>
+                        <td id="tSocioList"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
+
     <section class="modalSocios">
         <!--Modal agregar socio-->
         <div class="modal fade" id="agregarS" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,7 +71,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="formulario">
-
                         <label for="disabledTextInput" class="form-label">Nombre</label>
                         <input type="text" id="nombreSocioAgregar" class="form-control" placeholder="Nombre">
                         <label for="disabledTextInput" class="form-label">DNI</label>
@@ -65,7 +85,7 @@
                             <option value="Simple">Simple</option>
                         </select>
                         <br>
-                        <input type="submit" class="btn btn-success" value="Enviar">
+                        <input type="submit" class="btn btn-success" value="Crear">
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </form>
                 </div>
@@ -96,17 +116,39 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             onclick="limpiarFormulario()">Cerar</button>
-                        <button type="button" class="btn btn-success">Modificar</button>
+                        <button type="button" class="btn btn-success btnCuotasSocio">Cuotas</button>
                         <button type="button" class="btn btn-danger btnEliminarSocio">Eliminar Socio</button>
                     </div>
+                    <section class="listadoCuotas" id="listadoCuotasId">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Año</th>
+                                    <th scope="col">Mes</th>
+                                    <th scope="col">Fecha Cobro</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Recargo</th>
+                                    <th scope="col">Monto Final</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="añoList"></td>
+                                    <td id="mesList"></td>
+                                    <td id="fechaList"></td>
+                                    <td id="montoList"></td>
+                                    <td id="recargoList"></td>
+                                    <td id="montoFinalList"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
                 </div>
             </div>
+            <div id="cobrarCuota"></div>
         </div>
+       
     </section>
-
-
-
-
 
 
     <section class="seccionInformacioSocio">
@@ -127,7 +169,6 @@
             </li>
         </ul>
     </section>
-
 
     <footer class="footerEsponsor">
         <div class="iconosEsponsor">
@@ -160,8 +201,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+
     <script src="js/index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </body>
 
 </html>

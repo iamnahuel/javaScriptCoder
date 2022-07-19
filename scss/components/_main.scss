@@ -16,8 +16,7 @@ body {
 
     .menuOpciones {
         margin: 10px;
-
-    }
+ }
 
     .seccionInformacioSocio {
         .ulSocios {
@@ -30,9 +29,36 @@ body {
         }
     }
 
+    .tabla--hide {
+        display: flex;
+    }
+
+    .tabla {
+        justify-content: center;
+        display: none;
+
+        .tablaSocios {
+
+            margin: 20px;
+            border: solid 1px black;
+            width: 70%;
+            justify-content: center;
+            display: flex;
+            border-radius: 10px;
+
+            tbody {
+                td {
+                    list-style: none;
+                }
+            }
+        }
+    }
+
+
     .listadoSocios {
         justify-content: center;
         display: flex;
+
         .listaSocios {
             color: white;
             border-radius: 10px;
@@ -40,13 +66,24 @@ body {
             background-color: #003290;
         }
     }
-    .modalSocios{
-        .modal-content{
+
+    .modalSocios {
+        .modal-content {
             padding: 5px;
-            background-color:#f39608;
+            background-color: #f39608;
             color: white;
-            .form-control{
+
+            .form-control {
                 background-color: white;
+            }
+        }
+
+        .listadoCuotas {
+            display: none;
+            tbody {
+                td {
+                    list-style: none;
+                }
             }
         }
     }
