@@ -13,12 +13,10 @@ const socios = [socio1, socio2, socio3, socio4];
 const cuotas = [cuota1, cuota2, cuota3];
 
 //creamos los botones para crear / listar / buscar y eliminar socios
-//btnCrearSocio = document.querySelector(".agregarSocio");
 btnListarSocios = document.querySelector(".listarSocios");
 btnBuscarSocio = document.querySelector(".btnBuscarSocio");
 btnEliminarSocio = document.querySelector(".btnEliminarSocio");
 btnCuotasSocio = document.querySelector(".btnCuotasSocio");
-
 
 //funcion constructora para crear el objeto socio
 function Socio(dni, nombre, edad, localidad, tipoSocio) {
@@ -26,8 +24,7 @@ function Socio(dni, nombre, edad, localidad, tipoSocio) {
     this.nombre = nombre;
     this.edad = edad;
     this.localidad = localidad;
-    this.tipoSocio = this.tipoSocio;
-
+    this.tipoSocio = tipoSocio;
 }
 
 //funcion constructora para crear el objeto cuota
@@ -39,7 +36,6 @@ function Cuota(dni, año, mes, fehcaCobro, monto, recargo, montoFinal) {
     this.monto = monto;
     this.recargo = recargo;
     this.montoFinal = montoFinal
-
 }
 
 //funcion agregar socio con evento EventListener y e.target
@@ -48,7 +44,7 @@ formSocio.addEventListener("submit", (e) => {
     e.preventDefault();
     let from = e.target;
     let nombreSocio = from.children[1].value;
-    let dniSocio = from.children[3].value;
+    let dniSocio = parseInt(from.children[3].value);
     let localidadSocio = from.children[5].value;
     let edadSocio = from.children[7].value;
     let tipoSocio = from.children[9].value;
@@ -69,53 +65,45 @@ formSocio.addEventListener("submit", (e) => {
             socios.push(socioTemporal);
             alert("Se agrego a " + nombreSocio + " exitosamente");
             limpiarFormulario();
-
         }
     }
     return socios;
-
 })
 //listar socios en tabla asociados al btnListarSocios
 btnListarSocios.addEventListener("click", () => {
     limpiarListado();
-    ocultarSocios()
+    ocultarSocios();
+    let html = ` <img class="buttonAbrirSocio" onclick="aaa()" src="imagenes/usuario.png"/>`;
     for (socio of socios) {
         const dniList = document.querySelector("#dniList");
         const nombreList = document.querySelector("#nombreList");
         const edadList = document.querySelector("#edadList");
         const localidadList = document.querySelector("#localidadList");
         const tSocioList = document.querySelector("#tSocioList");
+        const btnAbrisSocio = document.getElementById("btnOpenSocio");
 
         let dniContent = document.createElement("li");
         let nombreContent = document.createElement("li");
         let edadContent = document.createElement("li");
         let localidadContent = document.createElement("li");
         let tSocioContent = document.createElement("li");
+        let btnAbrisSocioContent = document.createElement("li");
 
         dniList.appendChild(dniContent);
         nombreList.appendChild(nombreContent);
         edadList.appendChild(edadContent);
         localidadList.appendChild(localidadContent);
         tSocioList.appendChild(tSocioContent);
+        btnAbrisSocio.appendChild(btnAbrisSocioContent);
 
         dniContent.innerText = `${socio.dni}`
         nombreContent.innerText = `${socio.nombre}`
         edadContent.innerText = `${socio.edad}`
         localidadContent.innerText = `${socio.localidad}`
         tSocioContent.innerText = `${socio.tipoSocio}`
+        btnAbrisSocioContent.innerHTML += html;
     }
-
 })
-//ocultar tabla socios
-function ocultarSocios() {
-    var x = document.getElementById("idTablaSocios");
-    if (x.style.display === "flex") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "flex";
-    }
-}
-
 //evento listar cuotas socio asociada al btnCuotasSocio, filtrando por dni del socio
 btnCuotasSocio.addEventListener("click", () => {
     ocultarCuotas()
@@ -125,7 +113,7 @@ btnCuotasSocio.addEventListener("click", () => {
         alert("No se ha cargado ningun socio");
     } else {
         let dni = parseInt(document.getElementById("documento").value);
-        var lista = document.getElementById("ulListadoCuotas");
+        let HTMLbtnCobrarCuota = `<button type="button" onclick="aaa()" class="btn btn-success btnCuotasSocio">Cobrar Cuota</button>`;
         //variable fecha de forma temporal
         const fecha = new Date().toLocaleDateString();
         let resultado = cuotas.filter(dato => dato.dni === dni);
@@ -157,60 +145,95 @@ btnCuotasSocio.addEventListener("click", () => {
             montoContent.innerText = ("$" + `${dato.monto}`)
             racargoContent.innerText = `${dato.recargo}`
             montoFinalContent.innerText = `${dato.montoFinal}`
-
-
-
         }
-        
-
+        //agregamos el boton "cobrar cuota"
+        const cobrarCuota = document.querySelector("#btnCobrarCuota");
+        cobrarCuota.innerHTML = HTMLbtnCobrarCuota;
     }
     return socios;
 })
 //ocultar tabla cuotas
 function ocultarCuotas() {
     var x = document.getElementById("listadoCuotasId");
-    if (x.style.display === "flex") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "flex";
-    }
+    x.style.display === "flex" ? x.style.display = "none" : x.style.display = "flex";
+    /* if (x.style.display === "flex") {
+         x.style.display = "none";
+     } else {
+         x.style.display = "flex";
+     }*/
 }
-
-
+//ocultar tabla socios
+function ocultarSocios() {
+    var x = document.getElementById("idTablaSocios");
+    x.style.display === "flex" ? x.style.display = "none" : x.style.display = "flex";
+    /* if (x.style.display === "flex") {
+         x.style.display = "none";
+     } else {
+         x.style.display = "flex";
+     }*/
+}
 //evento buscar socio asociados al btnBuscarSocio
 btnBuscarSocio.addEventListener("click", () => {
+
     let dni = parseInt(document.getElementById("documento").value);
     const resultado = socios.find((el) => el.dni === dni);
-    if (resultado == null) {
-        alert("Socio/s inexistente/s");
-    } else {
-        document.getElementById("nombreSocio").value = resultado.nombre;
-        document.getElementById("localidadSocio").value = resultado.localidad;
-        document.getElementById("edadSocio").value = resultado.edad;
-    }
+    /* if (resultado == null) {
+       alert("Socio/s inexistente/s");
+   } else {
+       document.getElementById("nombreSocio").value = resultado.nombre;
+       document.getElementById("localidadSocio").value = resultado.localidad;
+       document.getElementById("edadSocio").value = resultado.edad;
+   }*/
+    resultado == null ? alert("Socio/s inexistente/s") : (document.getElementById("nombreSocio").value = resultado.nombre,
+        document.getElementById("localidadSocio").value = resultado.localidad,
+        document.getElementById("edadSocio").value = resultado.edad),
+        //cargamos datos en el local storage
+        //tmb podria guardar resultado como formato JSON
+        localStorage.setItem("dni", resultado.dni),
+        localStorage.setItem("localidad", resultado.localidad),
+        localStorage.setItem("edad", resultado.edad),
+        localStorage.setItem("nombre", resultado.nombre);
+
     return resultado;
 })
-
+//comprueba si el local storage esa con datos, para volver a cargarlos
+function comprobarLocalStorage() {
+    const bandera = localStorage.getItem("dni");
+    if (bandera != "") {
+        document.getElementById("documento").value = parseInt(localStorage.getItem("dni"));
+        document.getElementById("nombreSocio").value = localStorage.getItem("nombre")
+        document.getElementById("localidadSocio").value = localStorage.getItem("localidad")
+        document.getElementById("edadSocio").value = parseInt(localStorage.getItem("edad"));
+    }
+}
+//limpiar el local storage
+function limpiarStorage() {
+    localStorage.removeItem("dni");
+    localStorage.removeItem("nombre")
+    localStorage.removeItem("localidad")
+    localStorage.removeItem("edad");
+    limpiarFormulario()
+}
 //evento eliminar socio asociado al btnEliminarSocio
 btnEliminarSocio.addEventListener("click", () => {
     let dni = parseInt(document.getElementById("documento").value);
     const resultado = socios.find((el) => el.dni === dni);
     let position = socios.indexOf(resultado);
-
     let bandera = document.getElementById("nombreSocio").value;
-    if (bandera == "") {
-        alert("No se ha cargado ningun socio");
-    } else {
-        socios.splice(position, 1);
-        alert("Se elimino a " + bandera + " exitosamente");
-        limpiarFormulario();
-    }
+
+    bandera == "" ? alert("No se ha cargado ningun dato") : (socios.splice(position, 1), alert("Se elimino a " + bandera + " exitosamente"),
+        limpiarFormulario());
+    /* if (bandera == "") {
+         alert("No se ha cargado ningun socio");
+     } else {
+         socios.splice(position, 1);
+         alert("Se elimino a " + bandera + " exitosamente");
+         limpiarFormulario();
+     }*/
     return socios;
 })
-
 //limpia el frmulario de busqueda de socios
 function limpiarFormulario() {
-
     document.getElementById("documento").value = "";
     document.getElementById("nombreSocio").value = "";
     document.getElementById("localidadSocio").value = "";
@@ -219,7 +242,6 @@ function limpiarFormulario() {
     document.getElementById("dniSocioAgregar").value = "";
     document.getElementById("localidadSocioAgregar").value = "";
     document.getElementById("edadSocioAgregar").value = "";
-
 }
 //limpia el lsitado de socios y listado de cuotas
 function limpiarListado() {
@@ -228,6 +250,7 @@ function limpiarListado() {
     document.getElementById('edadList').innerHTML = '';
     document.getElementById('localidadList').innerHTML = '';
     document.getElementById('tSocioList').innerHTML = '';
+    document.getElementById('btnOpenSocio').innerHTML = '';
 }
 function limpiarListadoCuotas() {
     document.getElementById('añoList').innerHTML = '';
@@ -236,4 +259,11 @@ function limpiarListadoCuotas() {
     document.getElementById('montoList').innerHTML = '';
     document.getElementById('recargoList').innerHTML = '';
     document.getElementById('montoFinalList').innerHTML = '';
+    //no me elimina el boton cobrar cuootas.
+    document.getElementById('btnCobrarCuota').innerHTML = '';
+
+}
+//funcion proximamente
+function aaa() {
+    alert("proximamente");
 }

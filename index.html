@@ -30,14 +30,14 @@
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#agregarS">Agregar
             Socio</button>
         <button class="btn btn-primary listarSocios" type="submit">Listado Socios</button>
-  
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+        <button type="button" class="btn btn-primary" onclick="comprobarLocalStorage()" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Buscar Socio
         </button>
     </section>
     <!--tabla socios-->
     <section class="tabla" id="idTablaSocios">
-        <div class="tablaSocios" >
+        <div class="tablaSocios">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -46,6 +46,8 @@
                         <th scope="col">Edad</th>
                         <th scope="col">Localidad</th>
                         <th scope="col">Tipo Socio</th>
+                        <th scope="col"></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +57,7 @@
                         <td id="edadList"></td>
                         <td id="localidadList"></td>
                         <td id="tSocioList"></td>
+                        <td id="btnOpenSocio"></td>
                     </tr>
                 </tbody>
             </table>
@@ -80,13 +83,13 @@
                         <label for="disabledTextInput" class="form-label">Edad</label>
                         <input type="number" id="edadSocioAgregar" class="form-control" placeholder="Edad">
                         <label for="disabledTextInput" class="form-label">Tipo Socio</label>
-                        <select class="form-control" id="tipoSocio">
+                        <select class="form-control" id="tSocio">
                             <option value="Pleno" selected="selected">Pleno</option>
                             <option value="Simple">Simple</option>
                         </select>
                         <br>
                         <input type="submit" class="btn btn-success" value="Crear">
-                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
+                        <button type="button"  class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </form>
                 </div>
             </div>
@@ -115,7 +118,7 @@
                     <input type="text" disabled value="" placeholder="Edad" id="edadSocio" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                            onclick="limpiarFormulario()">Cerar</button>
+                            onclick="limpiarStorage()">Cerar</button>
                         <button type="button" class="btn btn-success btnCuotasSocio">Cuotas</button>
                         <button type="button" class="btn btn-danger btnEliminarSocio">Eliminar Socio</button>
                     </div>
@@ -138,16 +141,17 @@
                                     <td id="fechaList"></td>
                                     <td id="montoList"></td>
                                     <td id="recargoList"></td>
-                                    <td id="montoFinalList"></td>
+                                    <td class="aaa" id="montoFinalList"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
+                    <div id="btnCobrarCuota"></div>
                 </div>
             </div>
-            <div id="cobrarCuota"></div>
+
         </div>
-       
+
     </section>
 
 

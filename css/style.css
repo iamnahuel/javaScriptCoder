@@ -161,6 +161,11 @@ body .tabla .tablaSocios {
 body .tabla .tablaSocios tbody td {
   list-style: none;
 }
+body .tabla .tablaSocios tbody .buttonAbrirSocio {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
 body .listadoSocios {
   justify-content: center;
   display: flex;
