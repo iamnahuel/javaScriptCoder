@@ -185,7 +185,7 @@ body .modalSocios .modal-content .form-control {
   background-color: white;
 }
 body .modalSocios .listadoCuotas {
-  display: none;
+  background-color: white;
 }
 body .modalSocios .listadoCuotas tbody td {
   list-style: none;

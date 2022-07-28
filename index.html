@@ -21,17 +21,16 @@
             <a href="index.html"> <img class="textoEncabezado" src="imagenes/textoEncabezado.png" alt=""></a>
         </div>
     </header>
-
     <section class="tituloMain">
         <h1>Gestion de Socios</h1>
     </section>
-
     <section class="menuOpciones">
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#agregarS">Agregar
             Socio</button>
         <button class="btn btn-primary listarSocios" type="submit">Listado Socios</button>
 
-        <button type="button" class="btn btn-primary" onclick="comprobarLocalStorage()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" onclick="comprobarLocalStorage()" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
             Buscar Socio
         </button>
     </section>
@@ -63,7 +62,6 @@
             </table>
         </div>
     </section>
-
     <section class="modalSocios">
         <!--Modal agregar socio-->
         <div class="modal fade" id="agregarS" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,12 +87,11 @@
                         </select>
                         <br>
                         <input type="submit" class="btn btn-success" value="Crear">
-                        <button type="button"  class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </form>
                 </div>
             </div>
         </div>
-
         <!-- Modal buscador socio -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -118,10 +115,33 @@
                     <input type="text" disabled value="" placeholder="Edad" id="edadSocio" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                            onclick="limpiarStorage()">Cerar</button>
-                        <button type="button" class="btn btn-success btnCuotasSocio">Cuotas</button>
+                            onclick="limpiarStorage()">Cerrar</button>
+                        <button type="button" class="btn btn-success btnCuotasSocio" data-bs-toggle="modal"
+                            data-bs-target="#cobrarCuota">Cuotas</button>
                         <button type="button" class="btn btn-danger btnEliminarSocio">Eliminar Socio</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal cobrar cuota social-->
+        <div class="modal fade" id="cobrarCuota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cuota Social</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="formulario">
+                        <label for="disabledTextInput" class="form-label">Nombre: </label><label for="disabledTextInput"
+                            class="form-label" id="nombreSocioCobrar"></label>
+                        <br>
+                        <label for="disabledTextInput" class="form-label">DNI: </label><label for="disabledTextInput"
+                            class="form-label" id="dniSocioCobrar"></label>
+                        <br>
+                        <label for="disabledTextInput" class="form-label">Tipo Socio: </label><label
+                            for="disabledTextInput" class="form-label" id="tipoSocioCobrar"> </label>
+                        <br>
+                    </form>
                     <section class="listadoCuotas" id="listadoCuotasId">
                         <table class="table table-striped">
                             <thead>
@@ -146,15 +166,16 @@
                             </tbody>
                         </table>
                     </section>
-                    <div id="btnCobrarCuota"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary cobrarCuotas" data-bs-dismiss="modal">Descargar
+                            PDF</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
+                    </div>
                 </div>
+
             </div>
-
         </div>
-
     </section>
-
-
     <section class="seccionInformacioSocio">
         <div class="tituloMain">
             <h1 class="tituloSocio">Informacion pagos</h1>
@@ -173,7 +194,6 @@
             </li>
         </ul>
     </section>
-
     <footer class="footerEsponsor">
         <div class="iconosEsponsor">
             <a href="https://www.adidas.com.ar/" target="_blank"><img class="esponsor adidas" src="imagenes/adidas.png"
@@ -205,10 +225,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-
-    <script src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+    <script src="js/index.js"></script>
 </body>
 
 </html>

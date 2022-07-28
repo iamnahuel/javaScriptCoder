@@ -16,7 +16,7 @@ body {
 
     .menuOpciones {
         margin: 10px;
- }
+    }
 
     .seccionInformacioSocio {
         .ulSocios {
@@ -50,7 +50,8 @@ body {
                 td {
                     list-style: none;
                 }
-                .buttonAbrirSocio{
+
+                .buttonAbrirSocio {
                     height: 20px;
                     width: 20px;
                     cursor: pointer;
@@ -84,13 +85,16 @@ body {
         }
 
         .listadoCuotas {
-            display: none;
+          
+            background-color: white;
             tbody {
                 td {
                     list-style: none;
+
                 }
             }
         }
+        
     }
 
 
