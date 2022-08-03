@@ -134,13 +134,51 @@
                     <form id="formulario">
                         <label for="disabledTextInput" class="form-label">Nombre: </label><label for="disabledTextInput"
                             class="form-label" id="nombreSocioCobrar"></label>
-                        <br>
+                        <label>|</label>
                         <label for="disabledTextInput" class="form-label">DNI: </label><label for="disabledTextInput"
                             class="form-label" id="dniSocioCobrar"></label>
-                        <br>
+                        <label>|</label>
                         <label for="disabledTextInput" class="form-label">Tipo Socio: </label><label
-                            for="disabledTextInput" class="form-label" id="tipoSocioCobrar"> </label>
+                            for="disabledTextInput" class="form-label" id="tipoSocioCobrar"></label>
                         <br>
+                        <section class="cobrarCuota">
+                            <select class="slcFechaCuotas" id="slcAño">
+                                <option value="0">Año</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                            <select class="slcFechaCuotas" id="slcMes">
+                                <option value="0">Mes</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+
+                            </select>
+                            <button type="button" class="btn btn-success btnCalcularMonto">Calcular Monto</button>
+                            <button type="button" class="btn btn-success btnCobrarCuota">Cobrar</button>
+
+                            <div class="infoCuotaCobrar">
+                                <label for="disabledTextInput" class="form-label">Monto: $</label><label
+                                    for="disabledTextInput" class="form-label" id="labelMonto"></label>
+                                <label>|</label>
+                                <label for="disabledTextInput" class="form-label">Interes: $</label><label
+                                    for="disabledTextInput" class="form-label" id="labelInteres"></label>
+                                <label>|</label>
+                                <label for="disabledTextInput" class="form-label">Total: $</label><label
+                                    for="disabledTextInput" class="form-label" id="labelMontoFinal"></label>
+                            </div>
+                            <p class="alertaPago" id="alertaPago"></p>
+                        </section>
                     </form>
                     <section class="listadoCuotas" id="listadoCuotasId">
                         <table class="table table-striped">
@@ -167,12 +205,11 @@
                         </table>
                     </section>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary cobrarCuotas" data-bs-dismiss="modal">Descargar
+                        <button type="button" class="btn btn-primary cobrarCuotas">Descargar
                             PDF</button>
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -182,15 +219,19 @@
         </div>
         <ul class="ulSocios" style="text-align: left;">
             <li class="liSocios" style="list-style-type:none;">
-                Lo socios que abonen su cuota del 1 al 5 de cada mes, tendran un descuento del %5
+                Lo socios que abonen su cuota del 1 al 10 de cada mes, tendran un descuento del %5
             </li>
             <br>
             <li class="liSocios" style="list-style-type:none;">
-                Lo socios que abonen su cuota del 6 al 10 de cada mes, tendran un descuento del %3
+                Lo socios que abonen su cuota del 11 al 20 de cada mes, no tendran ningun venefecio
             </li>
             <br>
             <li class="liSocios" style="list-style-type:none;">
-                Lo socios que no abonen su cuota del 1 al 10 de cada mes, tendran un recargo del %10
+                Lo socios que abonen su cuota del 21 al 30 de cada mes, tendran un recargo del %10
+            </li>
+            <br>
+            <li class="liSocios" style="list-style-type:none;">
+                Lo socios que no abonen su cuota 1 al 30 de cada mes, tendran un recargo del %10 por cada mes de mora.
             </li>
         </ul>
     </section>
@@ -219,14 +260,15 @@
                     alt="Ubicacion del Club" title="ubicacion"></a>
         </div>
     </footer>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/index.js"></script>
 </body>
 

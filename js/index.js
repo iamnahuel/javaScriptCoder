@@ -1,26 +1,35 @@
-
-//declaro cuatro objetos de socio
-let socio1 = { nombre: "Facundo Alvarez", edad: 25, localidad: "Rolon", dni: 34475458, tipoSocio: "Pleno" };
-let socio2 = { nombre: "Laura Perez", edad: 60, localidad: "Santa Rosa", dni: 14285470, tipoSocio: "Pleno" };
-let socio3 = { nombre: "Juan Garcia", edad: 50, localidad: "Rolon", dni: 14245470, tipoSocio: "Simple" };
-let socio4 = { nombre: "Martin Gonzalez", edad: 20, localidad: "Macachin", dni: 14145796, tipoSocio: "Simple" };
-//declaro dos objetos de cuotas
-let cuota1 = { dni: 34475458, año: 2022, mes: 1, fechaCobro: Date, monto: 500, recargo: 100, montoFinal: 600 };
-let cuota2 = { dni: 34475458, año: 2022, mes: 2, fechaCobro: Date, monto: 500, recargo: 0, montoFinal: 500 };
-let cuota3 = { dni: 14285470, año: 2022, mes: 1, fechaCobro: Date, monto: 500, recargo: 0, montoFinal: 500 };
-//declaramos array de socios y cuotas, con dos socios harcodeados para que no este vacio
-const socios = [socio1, socio2, socio3, socio4];
-const cuotas = [cuota1, cuota2, cuota3];
+//declaramos array de socios y cuotas
+let cuotas = [];
+let socios = [];
+let valorCuota = 500;
+//cargamos los array con los datos que estan guardados en formato JSON, a traves del metodo then
+async function fetchSocios() {
+    const respuesta = await fetch("../data/socios.json")
+    return await respuesta.json();
+}
+fetchSocios().then(socio => {
+    socios = socio
+}
+)
+async function fetchCuotas() {
+    const respuesta = await fetch("../data/cuotas.json")
+    return await respuesta.json();
+}
+fetchCuotas().then(cuota => {
+    cuotas = cuota
+}
+)
 
 //creamos los botones para crear / listar / buscar y eliminar socios
 btnListarSocios = document.querySelector(".listarSocios");
 btnBuscarSocio = document.querySelector(".btnBuscarSocio");
 btnEliminarSocio = document.querySelector(".btnEliminarSocio");
 let btnCuotasSocio = document.querySelector(".btnCuotasSocio");
-//iniciamos el boton cuotas desabilitado
+let btnCobrarCuota = document.querySelector(".btnCobrarCuota");
+btnCalcularCuota = document.querySelector(".btnCalcularMonto");
+//iniciamos el boton cuotas y cobrar cuotas desabilitado 
 btnCuotasSocio.disabled = true;
-
-
+btnCobrarCuota.disabled = true;
 
 //funcion constructora para crear el objeto socio
 function Socio(dni, nombre, edad, localidad, tipoSocio) {
@@ -30,7 +39,6 @@ function Socio(dni, nombre, edad, localidad, tipoSocio) {
     this.localidad = localidad;
     this.tipoSocio = tipoSocio;
 }
-
 //funcion constructora para crear el objeto cuota
 function Cuota(dni, año, mes, fehcaCobro, monto, recargo, montoFinal) {
     this.dni = dni;
@@ -41,7 +49,6 @@ function Cuota(dni, año, mes, fehcaCobro, monto, recargo, montoFinal) {
     this.recargo = recargo;
     this.montoFinal = montoFinal
 }
-
 //funcion agregar socio con evento EventListener y e.target
 const formSocio = document.querySelector("#formulario");
 formSocio.addEventListener("submit", (e) => {
@@ -128,17 +135,14 @@ btnListarSocios.addEventListener("click", () => {
 })
 //evento listar cuotas socio asociada al btnCuotasSocio, filtrando por dni del socio
 btnCuotasSocio.addEventListener("click", () => {
-    //  ocultarCuotas()
     let dni = parseInt(document.getElementById("documento").value);
     limpiarStorage();
     limpiarListadoCuotas();
-    cobrarCuotas(dni);
-
+    listarCuotas(dni);
     return socios;
 })
-
-//cobrarCuotas
-function cobrarCuotas(documento) {
+//listar Cuotass
+function listarCuotas(documento) {
     limpiarListadoCuotas()
     const nombre = document.querySelector("#nombreSocioCobrar");
     const dni = document.querySelector("#dniSocioCobrar");
@@ -146,9 +150,9 @@ function cobrarCuotas(documento) {
 
     dni.innerText = documento;
     const resultado1 = socios.find((el) => el.dni === documento);
-    nombre.innerText = resultado1.nombre,
-        tSocio.innerText = resultado1.tipoSocio;
-    ///////////////////////////
+    nombre.innerText = resultado1.nombre;
+    tSocio.innerText = resultado1.tipoSocio;
+    
     const fecha = new Date().toLocaleDateString();
     let resultado = cuotas.filter(dato => dato.dni === documento);
     for (dato of resultado) {
@@ -177,19 +181,14 @@ function cobrarCuotas(documento) {
         mesContent.innerText = `${dato.mes}`
         fechaContent.innerText = fecha;
         montoContent.innerText = ("$" + `${dato.monto}`)
-        racargoContent.innerText = `${dato.recargo}`
-        montoFinalContent.innerText = `${dato.montoFinal}`
+        racargoContent.innerText = ("$" + `${dato.recargo}`)
+        montoFinalContent.innerText = ("$" + `${dato.montoFinal}`)
     }
 }
 //ocultar tabla cuotas
 function ocultarCuotas() {
     var x = document.getElementById("listadoCuotasId");
     x.style.display === "flex" ? x.style.display = "none" : x.style.display = "flex";
-    /* if (x.style.display === "flex") {
-         x.style.display = "none";
-     } else {
-         x.style.display = "flex";
-     }*/
 }
 //ocultar tabla socios
 function ocultarSocios() {
@@ -227,7 +226,89 @@ btnBuscarSocio.addEventListener("click", () => {
     )
     return resultado;
 })
-/////////////////////////////////
+//funcion para calcular el cobro antes de realizarlo
+btnCalcularCuota.addEventListener("click", () => {
+    //Comprobamos que selecciones una facha
+    var comboAño = document.getElementById("slcAño").value;
+    var comboMes = document.getElementById("slcMes").value;
+    if (comboAño == 0 || comboMes == 0) {
+        document.getElementById("alertaPago").innerHTML = "Seleccione una fecha";
+    } else {
+        //Controlar que la fecha seleccionada no esta paga
+        var comboMesTexto = document.getElementById("slcMes");
+        let dniSocio = parseInt(document.getElementById('dniSocioCobrar').innerHTML);
+        var mesCuota = comboMesTexto.options[comboMesTexto.selectedIndex].text;
+        const resultado = cuotas.find((el) => el.dni == dniSocio && el.año == comboAño && el.mes == mesCuota);
+        if (resultado != null) {
+            document.getElementById("alertaPago").innerHTML = "La fecha seleccionada ya fue liquidada";
+        } else {
+            //calcular dias demora pago
+            const fechaActual = new Date('YYYY-MM-DD').toLocaleDateString();
+            const fechaSeleccionada = comboAño + "/" + comboMes + "/1";
+            //calcular diferencia en dias entra las dos fechas usamos libreria moment.js
+            var fecha1 = moment(fechaSeleccionada)
+            var fecha2 = moment('2022-8-2')
+            var diasDemora = fecha2.diff(fecha1, 'days');
+
+            calcularInteres(diasDemora);
+            let interes = interesCuota;
+            let montoFinal = valorCuota + interes;
+            //pasamos los valores al label
+            document.getElementById("labelMonto").innerText = valorCuota;
+            document.getElementById("labelInteres").innerText = interes;
+            document.getElementById("labelMontoFinal").innerText = montoFinal;
+            btnCobrarCuota.disabled = false;
+            document.getElementById("alertaPago").innerHTML = "Cobro Aprobado";
+        }
+    }
+}
+)
+////*********calcular interes cuotas
+function calcularInteres(fecha) {
+    if (fecha <= 10) {
+        interesCuota = valorCuota - valorCuota * 1.05;
+    } else if (fecha > 10 && fecha <= 20) {
+        interesCuota = 0;
+    } else if (fecha > 20 && fecha <= 30) {
+        interesCuota = valorCuota * 0.1;
+    } else {
+        interesCuota = valorCuota * 0.1 + valorCuota * (Math.trunc(fecha / 30) / 10);
+    }
+    return interesCuota;
+}
+//*********funcion cobrar cuota asociada al btnCobrarCuota
+btnCobrarCuota.addEventListener("click", () => {
+    let dniSocio = parseInt(document.getElementById('dniSocioCobrar').innerHTML);
+    var comboAño = document.getElementById("slcAño");
+    var añoCuota = comboAño.options[comboAño.selectedIndex].text;
+    var comboMes = document.getElementById("slcMes");
+    var mesCuota = comboMes.options[comboMes.selectedIndex].text;
+    let fechaCobro = new Date().toLocaleDateString();
+    let montoCuota = parseInt(document.getElementById("labelMonto").innerHTML);
+    let interesCuota = parseInt(document.getElementById("labelInteres").innerHTML);
+    let montoFinal = montoCuota + interesCuota;
+    //declaramos un variable donde cargar el objeto cuota creado arriba
+    let cuotaTemporal = new Cuota(dniSocio, añoCuota, mesCuota, fechaCobro, montoCuota, interesCuota, montoFinal);
+    cuotas.push(cuotaTemporal);
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Cobro exitoso',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    limpiarListadoCuotas();
+    listarCuotas(dniSocio);
+    limpiarCobros();
+})
+//*********funcion limpiar campos cobros
+function limpiarCobros() {
+    document.getElementById("labelMonto").innerText = "";
+    document.getElementById("labelInteres").innerText = "";
+    document.getElementById("labelMontoFinal").innerText = "";
+    document.getElementById("alertaPago").innerHTML = "";
+    btnCobrarCuota.disabled = true;
+}
 //comprueba si el local storage esta con datos, para volver a cargarlos
 function comprobarLocalStorage() {
     const bandera = localStorage.getItem("dni");

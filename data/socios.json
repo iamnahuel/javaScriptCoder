@@ -1,0 +1,30 @@
+[
+    {
+       "nombre":"Facundo Alvarez",
+       "edad":25,
+       "localidad":"Rolon",
+       "dni":34475458,
+       "tipoSocio":"Pleno"
+    },
+    {
+       "nombre":"Laura Perez",
+       "edad":60,
+       "localidad":"Santa Rosa",
+       "dni":14285470,
+       "tipoSocio":"Pleno"
+    },
+    {
+       "nombre":"Juan Garcia",
+       "edad":50,
+       "localidad":"Rolon",
+       "dni":14245470,
+       "tipoSocio":"Simple"
+    },
+    {
+       "nombre":"Martin Gonzalez",
+       "edad":20,
+       "localidad":"Macachin",
+       "dni":14145796,
+       "tipoSocio":"Simple"
+    }
+ ]

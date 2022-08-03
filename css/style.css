@@ -190,6 +190,19 @@ body .modalSocios .listadoCuotas {
 body .modalSocios .listadoCuotas tbody td {
   list-style: none;
 }
+body .modalSocios .infoCuotaCobrar {
+  background-color: #003290;
+  color: white;
+  font-weight: 400;
+  margin: 20px;
+  border-radius: 5px;
+}
+body .modalSocios .slcFechaCuotas {
+  background-color: #003290;
+  color: white;
+  border-radius: 5px;
+  height: 37px;
+}
 
 * {
   margin: 0;
