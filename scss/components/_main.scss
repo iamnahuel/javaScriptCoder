@@ -85,8 +85,9 @@ body {
         }
 
         .listadoCuotas {
-          
+
             background-color: white;
+
             tbody {
                 td {
                     list-style: none;
@@ -94,21 +95,50 @@ body {
                 }
             }
         }
-        .infoCuotaCobrar{
+
+        .infoCuotaCobrar {
             background-color: #003290;
-            color:white;
-            font-weight:400;
+            color: white;
+            font-weight: 400;
             margin: 20px;
-            border-radius: 5px;;
+            border-radius: 5px;
+            ;
         }
-        .slcFechaCuotas{
+
+        .slcFechaCuotas {
             background-color: #003290;
             color: white;
             border-radius: 5px;
             height: 37px;
         }
-        
+
     }
 
+    .informacionPagosCuotas {
+        margin: 30px;
+
+        .horariosSocios {
+            height: 40%;
+            width: 70%;
+            background-color: #282940;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+
+
+            .tituoHorarios {
+                padding-top: 15px;
+                color: #f39608;
+                font-family: verdana;
+            }
+
+            .liSocios {
+                color: white;
+                font-family: arial;
+                padding-bottom: 20px;
+
+            }
+        }
+    }
 
 }

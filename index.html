@@ -27,7 +27,7 @@
     <section class="menuOpciones">
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#agregarS">Agregar
             Socio</button>
-        <button class="btn btn-primary listarSocios" type="submit">Listado Socios</button>
+        <button class="btn btn-primary listarSocios" type="submit" onclick="listarSocios()">Listado Socios</button>
 
         <button type="button" class="btn btn-primary" onclick="comprobarLocalStorage()" data-bs-toggle="modal"
             data-bs-target="#exampleModal">
@@ -142,13 +142,13 @@
                             for="disabledTextInput" class="form-label" id="tipoSocioCobrar"></label>
                         <br>
                         <section class="cobrarCuota">
-                            <select class="slcFechaCuotas" id="slcAño">
+                            <select class="slcFechaCuotas" id="slcAño" onchange="limpiarCobros()">
                                 <option value="0">Año</option>
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                             </select>
-                            <select class="slcFechaCuotas" id="slcMes">
+                            <select class="slcFechaCuotas" id="slcMes" onchange="limpiarCobros()">
                                 <option value="0">Mes</option>
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
@@ -205,7 +205,7 @@
                         </table>
                     </section>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary cobrarCuotas">Descargar
+                        <button type="button" class="btn btn-primary cobrarCuotas descargarPdf">Descargar
                             PDF</button>
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerar</button>
                     </div>
@@ -213,28 +213,24 @@
             </div>
         </div>
     </section>
-    <section class="seccionInformacioSocio">
-        <div class="tituloMain">
-            <h1 class="tituloSocio">Informacion pagos</h1>
-        </div>
-        <ul class="ulSocios" style="text-align: left;">
+    <section class="informacionPagosCuotas">
+        <div class="horariosSocios">
+            <h2 class="tituoHorarios">Información abono Cuotas</h2>
             <li class="liSocios" style="list-style-type:none;">
                 Lo socios que abonen su cuota del 1 al 10 de cada mes, tendran un descuento del %5
             </li>
-            <br>
             <li class="liSocios" style="list-style-type:none;">
                 Lo socios que abonen su cuota del 11 al 20 de cada mes, no tendran ningun venefecio
             </li>
-            <br>
             <li class="liSocios" style="list-style-type:none;">
                 Lo socios que abonen su cuota del 21 al 30 de cada mes, tendran un recargo del %10
             </li>
-            <br>
             <li class="liSocios" style="list-style-type:none;">
                 Lo socios que no abonen su cuota 1 al 30 de cada mes, tendran un recargo del %10 por cada mes de mora.
             </li>
-        </ul>
+        </div>
     </section>
+
     <footer class="footerEsponsor">
         <div class="iconosEsponsor">
             <a href="https://www.adidas.com.ar/" target="_blank"><img class="esponsor adidas" src="imagenes/adidas.png"
@@ -260,6 +256,9 @@
                     alt="Ubicacion del Club" title="ubicacion"></a>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

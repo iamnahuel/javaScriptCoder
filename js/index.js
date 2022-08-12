@@ -2,7 +2,7 @@
 let cuotas = [];
 let socios = [];
 let valorCuota = 500;
-//cargamos los array con los datos que estan guardados en formato JSON, a traves del metodo then
+//cargamos los array con los datos que estan guardados en formato JSON, a traves del metodo fetch
 async function fetchSocios() {
     const respuesta = await fetch("../data/socios.json")
     return await respuesta.json();
@@ -21,12 +21,13 @@ fetchCuotas().then(cuota => {
 )
 
 //creamos los botones para crear / listar / buscar y eliminar socios
-btnListarSocios = document.querySelector(".listarSocios");
+//btnListarSocios = document.querySelector(".listarSocios");
 btnBuscarSocio = document.querySelector(".btnBuscarSocio");
 btnEliminarSocio = document.querySelector(".btnEliminarSocio");
 let btnCuotasSocio = document.querySelector(".btnCuotasSocio");
 let btnCobrarCuota = document.querySelector(".btnCobrarCuota");
 btnCalcularCuota = document.querySelector(".btnCalcularMonto");
+btnDescargarPDF = document.querySelector(".descargarPdf");
 //iniciamos el boton cuotas y cobrar cuotas desabilitado 
 btnCuotasSocio.disabled = true;
 btnCobrarCuota.disabled = true;
@@ -84,6 +85,9 @@ formSocio.addEventListener("submit", (e) => {
         } else {
             //cargamos el objetos socioTemporal al array de socios
             socios.push(socioTemporal);
+            ocultarSocios();
+            listarSocios()
+
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -92,12 +96,13 @@ formSocio.addEventListener("submit", (e) => {
                 timer: 1500
             })
             limpiarFormulario();
+
         }
     }
     return socios;
 })
 //listar socios en tabla asociados al btnListarSocios
-btnListarSocios.addEventListener("click", () => {
+function listarSocios() {
     limpiarListado();
     ocultarSocios();
 
@@ -132,7 +137,7 @@ btnListarSocios.addEventListener("click", () => {
         tSocioContent.innerText = `${socio.tipoSocio}`
         btnAbrisSocioContent.innerHTML += html;
     }
-})
+}
 //evento listar cuotas socio asociada al btnCuotasSocio, filtrando por dni del socio
 btnCuotasSocio.addEventListener("click", () => {
     let dni = parseInt(document.getElementById("documento").value);
@@ -152,7 +157,7 @@ function listarCuotas(documento) {
     const resultado1 = socios.find((el) => el.dni === documento);
     nombre.innerText = resultado1.nombre;
     tSocio.innerText = resultado1.tipoSocio;
-    
+
     const fecha = new Date().toLocaleDateString();
     let resultado = cuotas.filter(dato => dato.dni === documento);
     for (dato of resultado) {
@@ -202,7 +207,6 @@ function ocultarSocios() {
 }
 //funcion buscar socio a traves del listado de socios
 function abrirSocioListado(dni) {
-    console.log(dni);
     document.getElementById("documento").value = dni;
 }
 //evento buscar socio asociados al btnBuscarSocio
@@ -263,7 +267,7 @@ btnCalcularCuota.addEventListener("click", () => {
     }
 }
 )
-////*********calcular interes cuotas
+//calcular interes cuotas
 function calcularInteres(fecha) {
     if (fecha <= 10) {
         interesCuota = valorCuota - valorCuota * 1.05;
@@ -276,7 +280,7 @@ function calcularInteres(fecha) {
     }
     return interesCuota;
 }
-//*********funcion cobrar cuota asociada al btnCobrarCuota
+//funcion cobrar cuota asociada al btnCobrarCuota
 btnCobrarCuota.addEventListener("click", () => {
     let dniSocio = parseInt(document.getElementById('dniSocioCobrar').innerHTML);
     var comboAño = document.getElementById("slcAño");
@@ -301,7 +305,7 @@ btnCobrarCuota.addEventListener("click", () => {
     listarCuotas(dniSocio);
     limpiarCobros();
 })
-//*********funcion limpiar campos cobros
+//funcion limpiar campos cobros
 function limpiarCobros() {
     document.getElementById("labelMonto").innerText = "";
     document.getElementById("labelInteres").innerText = "";
@@ -334,7 +338,12 @@ btnEliminarSocio.addEventListener("click", () => {
     let position = socios.indexOf(resultado);
     let bandera = document.getElementById("nombreSocio").value;
 
-    bandera == "" ? alert("No se ha cargado ningun dato") :
+    bandera == "" ? Swal.fire({
+        icon: 'error',
+        // title: 'Tiene que completar todos los campos',
+        text: 'No se cargo ningun socio',
+        //footer: '<a href="">Why do I have this issue?</a>'
+    }) :
         Swal.fire({
             title: 'Estas seguro?',
             text: "Esta por eliminar al socio " + resultado.nombre,
@@ -342,17 +351,33 @@ btnEliminarSocio.addEventListener("click", () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar!'
+            confirmButtonText: 'Si, eliminar!',
+            input: 'checkbox',
+            inputPlaceholder: 'Eliminar registro de pagos'
         }).then((result) => {
             if (result.isConfirmed) {
-                (socios.splice(position, 1),
-                    limpiarFormulario(),
-                    Swal.fire(
-                        'Eliminado!',
-                        resultado.nombre + ' fue eliminado',
-                        'success'
+                if (result.value) {
+                    (socios.splice(position, 1),
+                        eliminarCuotas(dni),
+                        limpiarFormulario(),
+                        Swal.fire(
+                            'Eliminado!',
+                            resultado.nombre + ' fue eliminado',
+                            'success'
+                        )
                     )
-                )
+                } else {
+                    (socios.splice(position, 1),
+                        limpiarFormulario(),
+                        Swal.fire(
+                            'Eliminado!',
+                            resultado.nombre + ' fue eliminado',
+                            'success'
+                        )
+                    )
+                }
+                ocultarSocios();
+                listarSocios();
             }
         }
         )
@@ -387,4 +412,18 @@ function limpiarListadoCuotas() {
     document.getElementById('montoList').innerHTML = '';
     document.getElementById('recargoList').innerHTML = '';
     document.getElementById('montoFinalList').innerHTML = '';
+}
+//funcion descargar pdf
+btnDescargarPDF.addEventListener("click", () => {
+    const pdf = document.getElementById("listadoCuotasId");
+    let nombre = document.querySelector("#nombreSocioCobrar").textContent;
+    console.log(nombre);
+    html2pdf()
+        .from(pdf)
+        .save("Cuotas " + nombre);
+})
+//funcion eliminar registro de pagos
+function eliminarCuotas(documento) {
+    const resultado = cuotas.map((el) => el.dni === documento);
+    cuotas.splice(resultado)
 }

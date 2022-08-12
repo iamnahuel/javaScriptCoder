@@ -203,6 +203,27 @@ body .modalSocios .slcFechaCuotas {
   border-radius: 5px;
   height: 37px;
 }
+body .informacionPagosCuotas {
+  margin: 30px;
+}
+body .informacionPagosCuotas .horariosSocios {
+  height: 40%;
+  width: 70%;
+  background-color: #282940;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+body .informacionPagosCuotas .horariosSocios .tituoHorarios {
+  padding-top: 15px;
+  color: #f39608;
+  font-family: verdana;
+}
+body .informacionPagosCuotas .horariosSocios .liSocios {
+  color: white;
+  font-family: arial;
+  padding-bottom: 20px;
+}
 
 * {
   margin: 0;
